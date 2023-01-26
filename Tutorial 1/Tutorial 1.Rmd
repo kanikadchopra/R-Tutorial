@@ -1,5 +1,6 @@
 ---
 title: "STA238 - Tutorial 1"
+author: "Kanika Chopra"
 output: pdf_document
 ---
 
@@ -80,7 +81,7 @@ Adding in formulas will take a bit more familiarity with using LaTex. You can ch
 
 # Introduction to R
 
-Next, we want to cover a basic introduction to R. R is a language and environment (i.e. RStudio) that is used for statistical computing and graphics. It is commonly used for data analysis and as well to develop more statistical software. Python and R are the tools that have been widely accepted for data analysis across most industries. There are specific data tools such as `tidyr` and `ggplot2` that are used to efficiently complete data analysis and create more detailed and better visualizations. This will be covered in a future tutorial.
+Next, we want to cover a basic introduction to R. R is a language and environment (i.e. RStudio) that is used for statistical computing and graphics. It is commonly used for data analysis and as well to develop more statistical software. Python and R are the tools that have been widely accepted for data analysis across most industries. There are specific data tools such as `tidyr` and `ggplot2` that are used to efficiently complete data analysis and create more detailed and better visualizations.
 
 For our purposes, R will be used for data analysis. However, to efficiently complete data analysis, it is important to understand how to code in R, including an introduction to programming. 
 
@@ -146,7 +147,7 @@ x
 Now, what if we wanted to add 2 to x?
 
 ```{r}
-x + 2
+x + 2 
 ```
 
 If we wanted to reassign x to x + 2 we could do the following:
@@ -192,10 +193,8 @@ Let's create a 2x2 matrix with all the values set at 0.
 matrix(0, 2, 2)
 ```
 
-We can also create matrices from lists of data.
 ```{r}
 m <- matrix(c(1,2,3,4), 2, 2)
-
 m
 ```
 
@@ -211,20 +210,18 @@ Next, we move onto discussing how to create loops in R.
 We'll focus on for loops for this tutorial. Loops are used to iterate through a list of items if you need to repeat an action or a function a certain number of times. Let's try an example to get used to the notation.
 
 ```{r}
-# Print each fruit
-for (fruit in fruits){
+for (fruit in fruits) {
   print(fruit)
 }
 ```
 
 If we wanted to repeat a function multiple times, we can loop through numeric list as well.
 ```{r}
-# Square each number between 1 to 5
-lst <- 1:5
-for (i in lst){
+for (i in 1:5) {
   print(i^2)
 }
 ```
+
 ## Probability Distributions
 
 For statistical analyses in R, you are often using probability distribution functions. For every distribution that R handles (i.e. Normal), there are 4 respective functions. The root name is used in each of these functions (i.e. norm). These four functions are:
@@ -239,12 +236,11 @@ Let's try to use each of these functions to see when they are useful.
 
 We want to randomly generate 100 numbers from a N(0,1) distribution.
 ```{r}
-set.seed(225)
-rnorm(100, mean=0, sd=1)
+rnorm(100, 0, 1)
 ```
 What if we wanted to know which value was the 50th percentile? 
 ```{r}
-qnorm(0.5, mean=0, sd=1)
+qnorm(0.5, 0, 1)
 ```
 
 The 25th percentile? 
@@ -254,7 +250,7 @@ qnorm(0.25, 0, 1)
 
 With the cdf, we can do the opposite, i.e. figure out what percentile a value belongs to.
 ```{r}
-pnorm(0, mean=0, sd=1)
+pnorm(0, 0, 1)
 ```
 
 This shows that 0 is the 50th percentile or 0.5 quantile.
@@ -268,30 +264,89 @@ Plotting our values is very useful especially to get a feel for the data you are
 
 ## Plots
 ```{r}
-# Set x and y lists
 x <- 1:5
 y <- x^2
 
-# Create plot
-plot(x, y,
+plot(x,y,
      # Add axes label
-     xlab='X values',
-     ylab='Y values',
+     xlab='x values',
+     ylab='y values',
      # Add title
-     main='Plot of squared values')
+     main = 'Plot of squared values')
 ```
 
 ```{r}
-# Generate 500 data points from Bin(100, 0.2)
-x <- rbinom(500, 100, 0.2)
-
-x[1:10]
+x <- rnorm(500, 0, 1)
+hist(x)
 ```
 We can also plot histograms which show us useful features, i.e. this is clearly a Normal distribution with our larger dataset.
 
 We can also use this to see the CLT in action. We plot 100 trials of a $Binom(0.2)$ distribution with 5000 observations.
 ```{r}
-# Generate 5000 data points from Binom(100, 0.2)
-
-
+x <- rbinom(5000, 100, 0.2)
+hist(x)
 ```
+
+Now that we have learned some beginner R, let's move onto the exercise for today's tutorial.
+
+## Exercise 
+Write Rcodes to illustrate the CLT for independent and identically distributed (i.i.d) sequence of Binomial distributions with parameter t=5 and p=0.1 where t is the number of tirals and p is the probability of success. Consider sample sizes of n=3, 10 and 100. Simulate 60000 times and generate histograms to visualize CLT for the above three scenarios.
+
+
+### Setup
+Let's begin by initializing our variables for this problem.
+```{r}
+s <- 60000 #The number of simulations
+p <- 0.10 #The probability of success
+t <- 5 #The number of trials
+SampleMeans <- numeric(s) #Initialize list of numbers of length s
+```
+
+```{r}
+length(SampleMeans)
+```
+
+### (a) n = 3 
+```{r}
+n <- 3 #The sample size
+SimValues <- matrix(0, n, s)
+print(dim(SimValues))
+
+for (i in 1:s){
+  SimValues[,i] <- rbinom(n, t, p)
+  SampleMeans[i] <- mean(SimValues[,i])
+}
+
+hist(SampleMeans, breaks = 30)
+```
+
+
+### (b) n = 10
+```{r}
+n <- 10 #The sample size
+SimValues <- matrix(0, n, s)
+print(dim(SimValues))
+
+for (i in 1:s){
+  SimValues[,i] <- rbinom(n, t, p)
+  SampleMeans[i] <- mean(SimValues[,i])
+}
+
+hist(SampleMeans, breaks = 30)
+```
+
+### (c) n = 100
+```{r}
+n <- 100 #The sample size
+SimValues <- matrix(0, n, s)
+print(dim(SimValues))
+
+for (i in 1:s){
+  SimValues[,i] <- rbinom(n, t, p)
+  SampleMeans[i] <- mean(SimValues[,i])
+}
+
+hist(SampleMeans, breaks = 30)
+```
+
+What do you observe as we are increasing the sample size?
