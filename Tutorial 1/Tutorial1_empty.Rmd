@@ -1,0 +1,282 @@
+---
+title: "STA238 - Tutorial 1"
+output: pdf_document
+---
+
+To install R Studio, you use this link: https://rstudio-education.github.io/hopr/starting.html. You will also need to install R separately as R Studio doesn't come with R.
+
+# Introduction to R Notebook 
+
+In a notebook, you can use a combination of Markdown and Code Chunks to create a report for your analysis and detail all of your steps. 
+
+## Markdown
+
+You can use Markdown to add titles, headers, sub-headers, comments, formulas, etc. within your notebook to create a neatly, organized document that goes alongside your code and analysis.
+
+Here is some common syntax that can be used for Markdown. Feel free to copy and paste from here until you get familiar with being able to format reports yourself. 
+
+## Syntax
+
+# Header 1
+## Header 2 
+### Header 3 
+#### Header 4 
+##### Header 5 
+
+**Bold**
+
+_Italics_
+
+`variable_name`
+
+```
+This is
+a
+code chunk
+here
+```
+
+Here is a bullet list:
+
+* Milk
+* Eggs
+* Bread
+
+Here is a numbered list:
+
+1. First
+2. Second
+3. Third
+
+You can also format your PDF so that certain sections appear on a newpage using `\newpage`. 
+
+This is a very brief introduction into what you can do with RMarkdown, if you want to explore more, I've listed a few resources below: 
+
+1. [Markdown Tutorial](https://www.markdowntutorial.com/)
+2. [Markdown Syntax Guide](https://www.markdownguide.org/basic-syntax/)
+3. [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
+
+You'll notice that for the above three items in the list, I have added hyperlinks so you can click on them and it will redirect you to each respective resource. To do this, you will put your text that you want in the hyperlink in square brackets followed by the link in curved brackets. For example `[my_link_text](www.url.com)`.
+
+## Code 
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+You can execute code within the notebook using a code chunk. Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*. You can press *Cmd+Enter* in order to run your code block or you can click on the small green play button in the chunk. Since this is a R Markdown Notebook, when you execute the code chunk, it will display the results beneath the chunk. 
+
+```{r}
+plot(cars)
+```
+
+If you noticed, the above plot was generated using a dataset `cars`. R comes with a few pre-loaded data sets already, such as `cars. 
+
+You'll notice at the top of the page, there is a section with a line saying "output: pdf_document". When you click on *Knit* or press *Cmd+Shift+K*, this will run any R code chunks and generate a PDF report with all of your text, and outputted results.  
+
+## LaTeX
+
+If you want to input LaTex into your sentences, you can use a single dollar sign to surround the LaTex symbol so that it is integrated into your sentences. For example, `$\alpha$` = $\alpha$. 
+
+Adding in formulas will take a bit more familiarity with using LaTex. You can check out this [link](https://epfllibrary.github.io/latex-course/07-Maths/index.html) if you want to learn more. 
+
+# Introduction to R
+
+Next, we want to cover a basic introduction to R. R is a language and environment (i.e. RStudio) that is used for statistical computing and graphics. It is commonly used for data analysis and as well to develop more statistical software. Python and R are the tools that have been widely accepted for data analysis across most industries. There are specific data tools such as `tidyr` and `ggplot2` that are used to efficiently complete data analysis and create more detailed and better visualizations. This will be covered in a future tutorial.
+
+For our purposes, R will be used for data analysis. However, to efficiently complete data analysis, it is important to understand how to code in R, including an introduction to programming. 
+
+## R Basics
+
+### Math Operations
+In R, like many programming languages, you can simply write the regular mathematical notation for addition, subtraction, multiplication, division and it will directly compute the results. Be careful with brackets and BEDMAS when writing mathematical statements. 
+
+```{r}
+# Addition
+
+```
+
+```{r}
+# Subtraction
+
+```
+
+```{r}
+# Multiplication
+
+```
+
+```{r}
+# Division
+
+```
+
+```{r}
+
+```
+
+There are also some important values that you can get from R. For example, if you wanted to get $/pi$ or $/e$ you could use the following.
+
+**Pi**
+```{r}
+
+```
+
+**e** 
+
+For e, there is a function `exp(x)` that will calculate $e^x$.
+```{r}
+
+```
+
+This value gives us e. 
+
+## Assignment Statement
+Assigning a variable is useful if you want to use and call it again in the future. Here are some basic syntax rules for assigning variables:
+
+* No spaces in variable names
+* Never use dashes in assigning variables, use underscores (i.e. `variable-one` vs. `variable_one`)
+* Never start a variable with a number, it needs to start with a letter (i.e. `1variable` vs. `variable1`)
+
+Let's start off with assigning a variable x.
+```{r}
+x = 2
+
+x
+```
+
+Now, what if we wanted to add 2 to x?
+
+```{r}
+
+```
+
+If we wanted to reassign x to x + 2 we could do the following:
+
+```{r}
+
+```
+
+We can also reassign x in many different other ways, including multiplying it by a number, dividing it by a number, operations including other variables, setting it to another data type, etc. 
+
+Next we'll briefly discuss the important data types. 
+
+## Data Types
+
+### Numeric
+
+Most numbers are represented in double precision which is called a "double" in R.
+```{r}
+
+```
+
+```{r}
+
+```
+
+### Lists
+We define a list using `c()` in R. 
+```{r}
+fruits <- c('apple', 'banana', 'peaches')
+fruits
+```
+
+## Matrices
+Matrices are useful if you are working with multidimensional data.
+```{r}
+?matrix
+```
+
+Let's create a 2x2 matrix with all the values set at 0.
+```{r}
+
+```
+
+We can also create matrices from lists of data.
+```{r}
+
+```
+
+We can also extract values from our matrix by using square indices following the syntax of `matrix[row, col]`. 
+```{r}
+
+```
+
+Next, we move onto discussing how to create loops in R.
+
+## Loops 
+
+We'll focus on for loops for this tutorial. Loops are used to iterate through a list of items if you need to repeat an action or a function a certain number of times. Let's try an example to get used to the notation.
+
+```{r}
+# Print each fruit
+
+```
+
+If we wanted to repeat a function multiple times, we can loop through numeric list as well.
+```{r}
+# Square each number between 1 to 5
+
+```
+## Probability Distributions
+
+For statistical analyses in R, you are often using probability distribution functions. For every distribution that R handles (i.e. Normal), there are 4 respective functions. The root name is used in each of these functions (i.e. norm). These four functions are:
+* p for "probability" (i.e. pnorm): The cumulative distribution function
+* d for "density" (i.e. dnorm): The probability distribution function 
+* q for "quantile" (i.e. qnorm): The inverse of the cdf
+* r for "random" (i.e. rnorm"): Random generation from this distribution
+
+You can see all of the functions that R has to offer in this [link](https://www.stat.umn.edu/geyer/old/5101/rlook.html). Some of the common ones are "norm", "binom", "exp", "chisq", "pois", "t". 
+
+Let's try to use each of these functions to see when they are useful. 
+
+We want to randomly generate 100 numbers from a N(0,1) distribution.
+```{r}
+
+```
+What if we wanted to know which value was the 50th percentile? 
+```{r}
+
+```
+
+The 25th percentile? 
+```{r}
+
+```
+
+With the cdf, we can do the opposite, i.e. figure out what percentile a value belongs to.
+```{r}
+
+```
+
+This shows that 0 is the 50th percentile or 0.5 quantile.
+
+Lastly, for the pdf, this can be used to show the probability that your random variable equals a certain value. Since we are working wth a continuous function, this is less useful however because $P(X=x)=0$. With discrete p.f. on the other hand, this is very useful. 
+
+The last topic for today's tutorial before moving onto the exercise is plotting.
+
+## Plots
+Plotting our values is very useful especially to get a feel for the data you are working with.
+
+## Plots
+```{r}
+# Set x and y lists
+
+# Create plot
+
+     # Add axes label
+     
+     
+     # Add title
+```
+
+```{r}
+# Generate 500 data points from N(0,1)
+
+```
+We can also plot histograms which show us useful features, i.e. this is clearly a Normal distribution with our larger dataset.
+
+We can also use this to see the CLT in action. We plot 100 trials of a $Binom(0.2)$ distribution with 5000 observations.
+```{r}
+# Generate 5000 data points from Binom(100, 0.2)
+
+
+```
